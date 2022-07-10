@@ -1,7 +1,10 @@
 <template>
-  <div class="container-fluid" :id="weather.currentConditions?.temp?.c>37?'warm':''">
+  <div
+    class="container-fluid"
+    :id="weather.currentConditions?.temp?.c > 37 ? 'warm' : ''"
+  >
     <div class="row d-flex justify-content-center">
-      <div class="col-lg-6">
+      <div class="col-md-12">
         <input
           type="search"
           placeholder="Search..."
@@ -12,7 +15,12 @@
       <div class="lg-12">
         <div class="weather">
           <div class="weather-title text-center">
-            <img  v-show='this.show' @load="this.show=true" :src="weather.currentConditions?.iconURL" class="img-fluid" />
+            <img
+              v-show="this.show"
+              @load="this.show = true"
+              :src="weather.currentConditions?.iconURL"
+              class="img-fluid"
+            />
             <h3>{{ weather.currentConditions?.dayhour }}</h3>
             <h1>{{ weather.region }}</h1>
             <div
@@ -36,65 +44,62 @@ export default {
       query: "",
       weather: "",
       degree: "°c",
-      show:false
+      show: false,
     };
   },
   methods: {
     getWeather(e) {
-        if(e='Enter'){
-      fetch(`https://weatherdbi.herokuapp.com/data/weather/${this.query}`)
-        .then((response) => response.json())
-        .then((data) => (this.weather = data));
-    }
-    }
+      if ((e = "Enter")) {
+        fetch(`https://weatherdbi.herokuapp.com/data/weather/${this.query}`)
+          .then((response) => response.json())
+          .then((data) => (this.weather = data));
+      }
+    },
   },
 };
 </script>
 <style>
-body{
-    width:100%;
-    height:100%;
-    overflow-x:hidden;
+body {
+  overflow-x: hidden !important;
+  font-family: "Times New Roman", Times, serif;
 }
-.container-fluid{
-    background:url('../assets/bg.jpg');
-    background-position:center;
-    background-size:cover;
-    min-height:150vh !important;
-    padding:30px;
-    background-repeat: no-repeat;
-    margin:0;
-    padding:0;
-  } 
-  #warm{
-    background:url('../assets/hot.jpg');
-    background-position:center;
-    background-size:cover;
-    min-height:150vh !important;
-    padding:30px;
-    background-repeat: no-repeat;
-    margin:0;
-    padding:0;
-  }
+.container-fluid {
+  background: url("../assets/bg.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100rem !important;
+  padding: 30px;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
+#warm {
+  background: url("../assets/hot.jpg");
+  background-position: center;
+  background-size: cover;
+  min-height: 100rem !important;
+  padding: 30px;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+}
 input {
-  width:100%;
-  padding:18px;
+  width: 100%;
+  padding: 18px;
   border-radius: 20px 20px !important;
-  margin-top:none !important;
-  border:none;
-  font-size:larger;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-top: 1px !important;
+  border: none;
 }
 input:active {
   border: none !important;
 }
 .img-fluid {
-  width: 200px;
+  width: 50px;
   height: 200px;
 }
 .weather {
   margin: 100px;
-  color:white;
+  color: white;
 }
 .weather h1 {
   font-size: 30px;
